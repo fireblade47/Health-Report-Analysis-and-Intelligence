@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Educational blood-work report analysis." />
+    <title>Blood Work Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <p class="eyebrow">HEALTH REPORT REVIEW</p>
+        <h1>Blood Work Analyzer</h1>
+        <p class="intro">Review a text blood report, classify values using its listed reference ranges, and receive a simple Indian diet-focused summary.</p>
+      </header>
+
+      <aside class="notice" role="note"><strong>Educational use only.</strong> This is not medical advice. Discuss results, symptoms, and treatment decisions with a qualified clinician.</aside>
+
+      <section class="card settings" aria-labelledby="settings-heading">
+        <h2 id="settings-heading">Model settings</h2>
+        <div class="field-grid">
+          <label>Provider
+            <select id="provider">
+              <option value="groq">Groq</option>
+              <option value="gemini">Gemini</option>
+            </select>
+          </label>
+          <label>Model name
+            <input id="model" value="qwen/qwen3.8-27b" required />
+          </label>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="report-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="report-heading">Blood report</h2>
+            <p>Paste the report or upload a UTF-8 <code>.txt</code> file.</p>
+          </div>
+          <label class="upload-button" for="report-file">Upload .txt<input id="report-file" type="file" accept="text/plain,.txt" /></label>
+        </div>
+        <textarea id="report" aria-label="Blood report text" rows="17" placeholder="Paste your blood-work report here…"></textarea>
+        <button id="analyze" class="primary" type="button">Analyze report</button>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <article class="card"><h2>Test results</h2><div id="test-results" class="markdown-output"></div></article>
+        <article class="card"><h2>Health summary &amp; diet</h2><div id="diet-plan" class="markdown-output"></div></article>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
